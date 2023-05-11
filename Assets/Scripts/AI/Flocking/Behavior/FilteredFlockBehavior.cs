@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class FilteredFlockBehavior : FlockBehavior
 {
-    public NeighborFilter filter;
+    public NeighborFilter filter = new SameFlockFilter();
 }
 
 /// <summary>

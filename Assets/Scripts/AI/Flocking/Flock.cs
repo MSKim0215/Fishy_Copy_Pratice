@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Flock : MonoBehaviour
 {
-    public FlockAgent agentPrefab;      // 개체의 프리팹
-    public FlockBehavior behavior;      // 개체의 움직임
+    public FlockAgent agentPrefab;          // 개체의 프리팹
+    public CompositeBehavior behavior;      // 개체의 움직임
 
     [Header("군집 옵션")]
     [Range(3, 12)] public int startingCount = 5;                // 개체 초기 개수
@@ -27,7 +27,8 @@ public class Flock : MonoBehaviour
 
     private void Start()
     {
-        behavior = new AvoidanceBehavior();
+        behavior = new CompositeBehavior();
+        behavior.Init();
 
         squareMoveSpeedMax = moveSpeedMax * moveSpeedMax;
         squareNeighborRadius = findNeighborRadius * findNeighborRadius;
