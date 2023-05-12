@@ -28,7 +28,7 @@ public class Flock : MonoBehaviour
     private void Start()
     {
         behavior = new CompositeBehavior();
-        behavior.Init();
+        behavior.Init(transform.position);
 
         squareMoveSpeedMax = moveSpeedMax * moveSpeedMax;
         squareNeighborRadius = findNeighborRadius * findNeighborRadius;
