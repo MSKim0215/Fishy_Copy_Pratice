@@ -39,6 +39,10 @@ public class AlignmentBehavior : FilteredFlockBehavior
 /// </summary>
 public class CohesionBehavior : FilteredFlockBehavior
 {
+    private Vector2 currentVelocity;        // 현재 속도
+
+    public float agentSmoothTime = 0.5f;    // 부드러운 이동을 조절하는 시간 값
+
     /// <summary>
     /// 개체의 주변 이웃들의 위치를 평균하여 개체의 현재 위치와의 차이를 계산하여 응집 방향을 반환
     /// agent: 개체 (본인)
@@ -58,6 +62,9 @@ public class CohesionBehavior : FilteredFlockBehavior
         }
         cohesionMove /= neighbors.Count;                        // 개체들이 응집해야 할 목표 위치
         cohesionMove -= (Vector2)agent.transform.position;      // 개체가 응집해야 할 방향
+
+        // 현재 속도와 목표 이동 방향을 기반으로 새로운 이동 방향 계산
+        cohesionMove = Vector2.SmoothDamp(agent.transform.up, cohesionMove, ref currentVelocity, agentSmoothTime);
         return cohesionMove;
     }
 }
